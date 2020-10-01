@@ -1,2 +1,71 @@
 #!/usr/bin/env ruby
-puts 'test'
+require_relative '../lib/check.rb'
+require_relative '../lib/setup.rb'
+require_relative '../lib/validator.rb'
+require 'fileutils'
+
+
+puts '###################################### Welcome to ALL-IN-ONE-LINTER ############################################'
+puts "\n"
+puts 'This linter is a tool that helps Microverse students setup required linters in their local and remote repository'
+puts 'ALL-IN-ONE-LINTER checks if required linters are added and project doesn\'t include errors before pushing to Github'
+puts "\n"
+
+def get_user_repo 
+  puts 'Please enter the path of your local repository : '
+  puts "\n"
+  repo_path = gets.chomp
+  repo_path
+end
+
+def get_desired_option
+  puts 'Please chose one of the options below : '
+  puts "\n"
+  puts '1 - Check repository'
+  puts '2 - Setup required linters'
+  puts '3 - Run desired linters'
+  option = Integer(gets.chomp)
+  option
+end
+
+def get_desired_language
+  puts 'Please chose your programming language : '
+  puts "\n"
+  puts '1 - HTML'
+  puts '2 - CSS'
+  puts '3 - RUBY'
+  puts "\n"
+  desired_lang = Integer(gets.chomp)
+  if desired_lang == 3
+    puts 'If you want to include Rspec type YES'
+    optional_rspec = gets.chomp 
+    puts 'Installing Rspec'
+    desired_lang = '3+' 
+  end
+  desired_lang
+end
+
+
+def run_linter
+
+  path = get_user_repo 
+  option = get_desired_option
+  lang = get_desired_language
+  repo_set = Setup.new(path,lang)
+
+   
+  if option == 1
+    lang = get_desired_language
+    puts 'checking repository'
+  elsif option == 2
+    repo_set.start_setup
+    puts 'setting up complete'
+  elsif option == 3
+    # repo_set.run
+    puts 'running linters'
+
+  end
+
+end
+
+run_linter
