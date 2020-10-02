@@ -1,2 +1,3 @@
 # All_in_one_linter
-This is a solo capstone project required at the end of the each of the Microverse Main Technical Curriculum sections.
+This linter is a tool that helps Microverse students setup required linters in their local and remote repository
+ALL-IN-ONE-LINTER checks if required linters are added and project doesn\'t include errors before pushing to Github
